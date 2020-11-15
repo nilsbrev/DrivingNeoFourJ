@@ -1,3 +1,7 @@
+import org.neo4j.driver.Session;
+
+import static org.neo4j.driver.Values.parameters;
+
 public class Menu {
 
     void printWelcomeMessage(){
@@ -9,20 +13,23 @@ public class Menu {
         System.out.println("(0) : Quitter l'application");
     }
 
-    void listAvailableMovies(){
-        System.out.println(1);
+    void listAvailableMovies(Session session){
+        session.run("")
 
     }
-    void listAvailablePersons(){
+    void listAvailablePersons(Session session){
         System.out.println(2);
 
     }
-    void printTopThreeMovies(){
+    void printTopThreeMovies(Session session){
         System.out.println(3);
 
     }
 
-    void printFiveRelatedMovies(String movie){
+    void printFiveRelatedMovies(Session session, String movie){
+        session.run(
+                "MATCH (a:Person) WHERE a.name STARTS WITH $m RETURN a.name AS name",
+                parameters("m", movie));
         System.out.println("4 "+movie);
 
     }

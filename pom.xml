@@ -7,6 +7,11 @@
     <groupId>nils.brev</groupId>
     <artifactId>DrivingNeoFourJ</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <dependencies><!-- https://mvnrepository.com/artifact/org.neo4j.driver/neo4j-java-driver -->
+        <dependency>
+            <groupId>org.neo4j.driver</groupId>
+            <artifactId>neo4j-java-driver</artifactId>
+            <version>4.1.1</version>
+        </dependency></dependencies>
 
 </project>
