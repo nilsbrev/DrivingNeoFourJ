@@ -2,30 +2,31 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
-        Menu m = new Menu();
-        Neo4JWrapper w = new Neo4JWrapper();
+        Neo4JHandler handler = new Neo4JHandler("bolt://localhost:7687","javadriver","javadriver");
 
+        // Menu à choix qui permet d'éxécuter les commandes
         while(true){
-            m.printWelcomeMessage();
+            Command.printWelcomeMessage();
             Scanner s = new Scanner(System.in);
             int choix = s.nextInt();
             switch (choix){
                 case 0 :
                     System.exit(0);
-                    w.closeDriver();
+                    handler.closeDriver();
                 case 1 :
-                    m.listAvailableMovies(w.getSession());
+                    Command.listAvailableMovies(handler.getSession());
                     break;
                 case 2 :
-                    m.listAvailablePersons(w.getSession());
+                    Command.listAvailablePersons(handler.getSession());
                     break;
                 case 3 :
-                    m.printTopThreeMovies(w.getSession());
+                    Command.printTopThreeMovies(handler.getSession());
                     break;
                 case 4 :
                     System.out.println("Quel est le titre du film ?");
-                    String movie = s.next();
-                    m.printFiveRelatedMovies(w.getSession(),movie);
+                    Scanner x = new Scanner(System.in);
+                    String movie = x.nextLine();
+                    Command.printFiveRelatedMovies(handler.getSession(),movie);
                     break;
                 default:
                     System.out.println("Veuillez rentrer un numéro valide");
